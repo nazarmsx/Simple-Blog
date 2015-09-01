@@ -1,0 +1,21 @@
+ <div class="container col-xs-8 col-xs-offset-2" >  
+<div ng-repeat="post in posts" >
+       
+       <div class="row">
+      <div class="col-xs-12">
+        <h2>{{post.title}}</h2>
+        <p>{{post.post_text |limitTo:100 }}...</p>
+        <p class="lead"><a ng-click="loadPostContent(post.id)" class="btn btn-default">Read More</a></p>
+        <ul class="list-inline">
+            <li><span id="postDate">{{post.created }}</span></li><li></li><li>
+                </li></ul>
+      </div>
+    </div>
+    <hr>  
+</div>
+     <a class="btn btn-info btn-block btn-primary" ng-hide="allPostDownloaded" ng-click="loadMore()" role="button">Load More </a>
+    <div class="alert alert-info" role="alert" ng-show="allPostDownloaded"><strong>Info!</strong>There is no post to download.</div>
+</div>
+
+
+    
