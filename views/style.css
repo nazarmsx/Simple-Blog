@@ -13,6 +13,9 @@ h1{
     padding: 0px;
     margin: 0px;
 }
+.contacts{
+    text-align: center;
+}
 .postDate{
    
     font-family: 'Consolas';
