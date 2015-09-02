@@ -1,1 +1,39 @@
-<h1>Nothing to edit here!</h1>
+ <div class="container col-xs-8 col-xs-offset-2" >   
+<div class="row">
+<div class="panel panel-default">
+<div class="panel-heading"><h3>Posts</h3></div>
+
+<table class="table table-striped">
+    <thead><tr>
+            <th>ID</th>
+            <th>Post title</th>
+            <th>Post Text</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="post in filteredPosts">
+            <td>{{ post.id}}</td>
+            <td>{{ post.title}}</td>
+            <td>{{ post.post_text|limitTo:50}}</td>
+            <td>{{ post.created}}</td>
+           
+            <td>
+                <button class="btn" ng-click="editPost(post.id)">
+                    <span class="glyphicon glyphicon-pencil"></span>  Edit
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" ng-click="deletePost(post.id)">
+                <span class="glyphicon  glyphicon-remove-sign"></span>  Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ul class="pager" >
+    <button  class="btn" style="float: right;" type="button"  ng-click="previous()">Previous</button>
+   <button class="btn"  style="float: left;" type="button"  ng-disabled="nextButtonDisable" ng-click="next()">Next</button>
+</ul>
+</div>
+</div>

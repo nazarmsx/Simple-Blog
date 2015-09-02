@@ -30,7 +30,7 @@ class PostDAO extends DAO {
    }
    public function readAll(){
    $posts=array();
-   foreach (ConnectionProvider::getConnection()->query('select * from posts order by created desc limit '.$_REQUEST['alreadyDownloadedQuantity'].',3') as $row)
+   foreach (ConnectionProvider::getConnection()->query('select * from posts order by created desc limit '.$_REQUEST['alreadyDownloadedQuantity'].',5') as $row)
    {
    $post=new Post();      
    $post->id=$row['id'];
