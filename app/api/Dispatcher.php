@@ -14,6 +14,8 @@ class HttpDispatcher extends Dispatcher
     if($action =='delete') return new DeleteUserCommand();
     if($action =='readAll') return new ReadAllPostsCommand();
     if($action =='read') return new ReadPostCommand();
+    if($action =='search') return new SearchPostCommand();
+
     if($action =='register') return new RegisterUserCommand ();
     return null;
     }

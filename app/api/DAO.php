@@ -41,6 +41,19 @@ class PostDAO extends DAO {
    }
    return $posts;
    }
+   public function search(){
+   $posts=array();
+   foreach (ConnectionProvider::getConnection()->query('select * from posts order by created desc limit '.$_REQUEST['alreadyDownloadedQuantity'].',5 where title LIKE'."'%".$_REQUEST['searchPattern']."%'") as $row)
+   {
+   $post=new Post();      
+   $post->id=$row['id'];
+   $post->title=$row['title'];
+   $post->post_text=$row['post_text'];
+   $post->created=$row['created'];
+   $posts[]=$post;
+   }
+   return $posts;
+   }
     public function create($user) { //returns id of newly inserted user
     $insert_address="INSERT INTO address (state,street,zip,city) VALUES ('".$user->state."','".$user->street."','".$user->zip."','".$user->city."') ";
     ConnectionProvider::getConnection()->query($insert_address);

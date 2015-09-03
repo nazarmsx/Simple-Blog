@@ -1,6 +1,6 @@
 
 app.controller('editController', function ($scope, $http) {
-
+    $scope.hideForm=true;
     $scope.getCustomerForm = function ()
     {
         var customer = {
@@ -60,7 +60,15 @@ app.controller('editController', function ($scope, $http) {
     $scope.edit = true;
     $scope.error = false;
     $scope.incomplete = false;
-    $scope.editUser = function (id) {
+    $scope.closeForm=function()
+    {
+                $scope.hideForm=true;
+
+    };
+    $scope.editPost = function (id) {
+        $scope.hideForm=false;
+       
+        /*
           if (id == 'new') {
                 $scope.users.push($scope.getCustomerForm());
                 $scope.refresh();
@@ -78,7 +86,7 @@ app.controller('editController', function ($scope, $http) {
                     
                 }
             }
-          }
+          }*/
     };
     $scope.updateUser = function ()
     {

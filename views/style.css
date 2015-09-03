@@ -36,7 +36,10 @@ h1{
     user-select: none;
     cursor: default;
 }
-
+#main
+{
+   padding-top: 4em;
+}
 /*
  * Card component
  */
@@ -151,4 +154,43 @@ h1{
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+.overlay-bg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:100%;
+    width: 100%;
+    cursor: pointer;
+    z-index: 1000; /* high z-index */
+    background: #000; /* fallback */
+    background: rgba(0,0,0,0.75);
+}
+    .overlay-content {
+        display: block;
+        background: #fff;
+        padding: 1%;
+        width: 50%;
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        margin: 0 0 0 -20%; /* add negative left margin for half the width to center the div */
+        cursor: default;
+        z-index: 10001;
+        border-radius: 4px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.9);
+    }
+ 
+    
+ 
+/* media query for most mobile devices */
+@media only screen and (min-width: 0px) and (max-width: 480px){
+ 
+    .overlay-content {
+        width: 96%;
+        margin: 0 2%;
+        left: 0;
+    }
 }
