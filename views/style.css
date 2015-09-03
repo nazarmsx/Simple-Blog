@@ -157,7 +157,7 @@ h1{
 }
 
 .overlay-bg {
-    display: none;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;

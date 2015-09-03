@@ -65,9 +65,13 @@ app.controller('editController', function ($scope, $http) {
                 $scope.hideForm=true;
 
     };
-    $scope.editPost = function (id) {
+    $scope.editPost = function (id,title,text) {
         $scope.hideForm=false;
-       
+        $scope.post={
+        id:id,
+        post_title:title,
+        post_text:text
+        };
         /*
           if (id == 'new') {
                 $scope.users.push($scope.getCustomerForm());
