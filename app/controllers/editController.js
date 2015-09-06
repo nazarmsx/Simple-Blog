@@ -1,5 +1,5 @@
 
-app.controller('editController', function ($scope, $http) {
+app.controller('editController', function ($scope,$http) {
     $scope.hideForm=true;
     $scope.getCustomerForm = function ()
     {
@@ -57,7 +57,7 @@ app.controller('editController', function ($scope, $http) {
         $scope.filteredUsers = $scope.users.slice($scope.currentPage * $scope.rowsQuantity, ($scope.currentPage * $scope.rowsQuantity) + $scope.rowsQuantity);
     };
    
-    $scope.edit = true;
+    $scope.edit = false;
     $scope.error = false;
     $scope.incomplete = false;
     $scope.closeForm=function()
@@ -72,25 +72,6 @@ app.controller('editController', function ($scope, $http) {
         post_title:title,
         post_text:text
         };
-        /*
-          if (id == 'new') {
-                $scope.users.push($scope.getCustomerForm());
-                $scope.refresh();
-            } else {
-            for (var i = 0; i < $scope.users.length; i++)
-            {
-                if ($scope.users[i].id == id)
-                {
-                    
-                    $scope.edit = false;
-                    var user = $scope.users[i];
-                    $scope.customer = angular.copy(user);
-                    $scope.refresh();
-                    break;
-                    
-                }
-            }
-          }*/
     };
     $scope.updateUser = function ()
     {

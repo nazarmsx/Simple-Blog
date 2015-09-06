@@ -1,6 +1,6 @@
 var app = angular.module('myApp', ['ngRoute']);
 
-app.controller('homeController', function ($scope, $http,$location) {
+app.controller('homeController', function ($scope,$http,$location) {
             
             $scope.allPostDownloaded=true; //is using to hide loadMore button
             $http.get("./app/api/request.php?action=readAll&alreadyDownloadedQuantity=0")
@@ -29,6 +29,13 @@ app.controller('homeController', function ($scope, $http,$location) {
                 if(arr.length<3)
                 $scope.allPostDownloaded=true;    
             };
+            $scope.loadComments=function(post)
+            {
+            $http.get("./app/api/request.php?action=loadComments&post_id="+post.id)
+            .success(function (response) {
+                post.comments = response.records;
+            });    
+            };
 });
 
 app.config(function ($routeProvider) {
@@ -56,4 +63,13 @@ app.config(function ($routeProvider) {
             .otherwise({redirectTo:'/'});;
 });
 
+app.run(function($rootScope)
+{
+    $rootScope.title="Simple blog: Main page";
+    $rootScope.stringToSearch="";
+    $rootScope.search=function()
+    {
+        console.log($rootScope.stringToSearch);
+    };
+});
 

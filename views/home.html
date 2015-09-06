@@ -8,8 +8,14 @@
         <p class="lead"><a ng-click="loadPostContent(post.id)" class="btn btn-default">Read More</a></p>
         <ul class="list-inline">
             <li><span id="postDate">{{post.created }}</span></li><li></li><li>
-                </li></ul>
+                </li>
+                <li ng-click="loadComments(post)"><i class="glyphicon glyphicon-comment"></i> <a href="" ng-hide="post.commentsQuantity==0"> {{post.commentsQuantity}} comments</a>
+                <a href="" ng-show="post.commentsQuantity==0"> No comments have been added yet :(</a></li>
+        </ul>
       </div>
+           <div id="comments" ng-repeat="comment in post.comments">
+             {{comment.text}}  
+           </div>
     </div>
     <hr>  
 </div>

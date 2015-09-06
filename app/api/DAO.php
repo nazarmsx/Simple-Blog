@@ -30,13 +30,15 @@ class PostDAO extends DAO {
    }
    public function readAll(){
    $posts=array();
-   foreach (ConnectionProvider::getConnection()->query('select * from posts order by created desc limit '.$_REQUEST['alreadyDownloadedQuantity'].',5') as $row)
+   $sql='select *,(select count(*) from comment where comment.post_id=posts.id) as comments_quantity from posts order by posts.created desc limit '.$_REQUEST['alreadyDownloadedQuantity'].',5';
+   foreach (ConnectionProvider::getConnection()->query($sql) as $row)
    {
    $post=new Post();      
    $post->id=$row['id'];
    $post->title=$row['title'];
    $post->post_text=$row['post_text'];
    $post->created=$row['created'];
+   $post->commentsQuantity=$row['comments_quantity'];
    $posts[]=$post;
    }
    return $posts;
@@ -74,10 +76,10 @@ class PostDAO extends DAO {
 
 }
 
-class AccountDAO extends DAO{
+
+class CommentDAO extends DAO{
     public function create($data) {
     $sql="INSERT INTO accounts (email,password) VALUES ('".$data->email."','".sha1($data->password)."') ";
-   echo $sql;
     ConnectionProvider::getConnection()->query($sql);
     }
 
@@ -90,7 +92,18 @@ class AccountDAO extends DAO{
     }
 
     public function readAll() {
-        
+   $sql="select * from comment where post_id='".$_REQUEST['post_id']."' order by created desc;" ; 
+   $comments=array();
+   foreach (ConnectionProvider::getConnection()->query($sql) as $row)
+   {
+   $comment=new Comment();      
+   $comment->id=$row['id'];
+   $comment->text=$row['text'];
+   $comment->post_id=$row['post_id'];
+   $comment->created=$row['created'];
+   $comments[]=$comment;
+   }
+   return $comments;
     }
 
     public function update($table) {

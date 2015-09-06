@@ -59,6 +59,16 @@ class SearchPosts implements DbCommand
     return $res;
     }
 }
+class PostComments implements DbCommand
+{
+   function execute() {
+    $dao=new CommentDAO();
+    $res='';
+    $res='{"records":'.json_encode($dao->readAll()).'}';
+    return $res;
+    }
+}
+
 
 class RegisterUserCommand implements DbCommand
 {

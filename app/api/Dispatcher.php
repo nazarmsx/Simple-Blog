@@ -15,6 +15,8 @@ class HttpDispatcher extends Dispatcher
     if($action =='readAll') return new ReadAllPostsCommand();
     if($action =='read') return new ReadPostCommand();
     if($action =='search') return new SearchPostCommand();
+    if($action =='loadComments') return new PostComments();
+
 
     if($action =='register') return new RegisterUserCommand ();
     return null;

@@ -46,19 +46,24 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Post title:</label>
         <div class="col-sm-6">
-            <input type="text" name="post_title" ng-model="post.post_title"  class="form-control" placeholder="Title" ng-required="true" required>
-            <span style="color:red" ng-show="myForm.user_name.$dirty && myForm.user_name.$invalid">
-                <span ng-show="myForm.user_name.$error.required">Name is required.</span>               
+            <input type="text" name="post_title" ng-model="post.post_title"  class="form-control" placeholder="Title" ng-required="true" ng-minlength="10" ng-maxlength="80" required>
+            <span style="color:red" ng-show="myForm.post_title.$dirty && myForm.post_title.$invalid">
+                <span ng-show="myForm.post_title.$error.required">Post title is required.</span>     
+                                <span ng-show="myForm.post_title.$error.minlength">Post title min length is 10 charchters.</span>               
+
+                <span ng-show="myForm.post_title.$error.maxlength">Post title max length is 80 charchters.</span>      
+
+
             </span>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Post text:</label>
         <div class="col-sm-6">
-            <textarea class="form-control" rows="10" cols="14" name="post_title" ng-model="post.post_text" id="inputEmail" class="form-control" placeholder="Post text" required></textarea>
-            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
-                <span ng-show="myForm.email.$error.required">Email is required.</span>
-                <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+            <textarea class="form-control" rows="10" cols="14" name="post_text" ng-model="post.post_text" id="inputEmail" class="form-control" placeholder="Post text" required></textarea>
+            <span style="color:red" ng-show="myForm.post_text.$dirty && myForm.post_text.$invalid">
+                <span ng-show="myForm.post_text.$error.required">Email is required.</span>
+                <span ng-show="myForm.post_text.$error.email">Invalid email address.</span>
             </span>
         </div>
     </div>
@@ -67,8 +72,7 @@
 </form>
 <hr>
 <div class="form-actions">
-    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="updateUser()" ng-disabled=" myForm.$invalid"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
-    <button type="button" ng-hide="edit" class="btn btn-danger" ng-click="cancelSavingPersonalInfo()">Cancel</button>
+    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="updatePost()" ng-disabled=" myForm.$invalid"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
     <button class="btn btn-success" ng-show="edit" ng-click="createUser()" ng-disabled="myForm.$pristine || myForm.$invalid" > 
         <span class="glyphicon glyphicon-user"></span>  Create New User
     </button>
