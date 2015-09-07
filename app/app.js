@@ -3,10 +3,12 @@ var app = angular.module('myApp', ['ngRoute']);
 app.controller('homeController', function ($scope,$http,$location) {
             
             $scope.allPostDownloaded=true; //is using to hide loadMore button
+            $scope.postsAreBeingDownloading=true;
             $http.get("./app/api/request.php?action=readAll&alreadyDownloadedQuantity=0")
             .success(function (response) {
                 $scope.posts = response.records;
                 $scope.allPostDownloaded=false;
+                $scope.postsAreBeingDownloading=false;
                 $scope.checkRequestIsNotEmpty(response.records);
             });
             $scope.loadPostContent=function(id)
