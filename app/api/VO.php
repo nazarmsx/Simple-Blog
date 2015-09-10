@@ -15,4 +15,5 @@ class Comment
     var $text;
     var $created;  
     var $post_id;
+    var $author_name;
 }

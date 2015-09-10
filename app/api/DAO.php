@@ -101,6 +101,7 @@ class CommentDAO extends DAO{
    $comment->text=$row['text'];
    $comment->post_id=$row['post_id'];
    $comment->created=$row['created'];
+   $comment->author_name=$row['author_name'];
    $comments[]=$comment;
    }
    return $comments;

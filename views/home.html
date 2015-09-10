@@ -1,4 +1,5 @@
- <div class="container col-xs-8 col-xs-offset-2" >  
+
+<div class="container col-xs-8 col-xs-offset-2" >  
   <div class="spinner" ng-show="postsAreBeingDownloading">
   <div class="bounce1"></div>
   <div class="bounce2"></div>
@@ -15,25 +16,57 @@
         <ul class="list-inline">
             <li><span id="postDate">{{post.created }}</span></li><li></li><li>
                 </li>
-                <li ><i class="glyphicon glyphicon-comment"></i> <a href="" ng-click="loadComments(post)" class="btn btn-default" ng-hide="post.commentsQuantity==0"> {{post.commentsQuantity}} comments</a>
+                <li ><i class="glyphicon glyphicon-comment"></i>
+                    
+                    <a href="" ng-click="loadComments(post)" class="btn btn-default" ng-hide="post.commentsDownloaded || post.commentsQuantity==0"> {{post.commentsQuantity}} comments</a>
+                    <a href="" ng-click="hideComments(post)" class="btn btn-default" ng-show="post.commentsDownloaded && !post.commentsQuantity==0"> Hide comments</a>
+
                     <span ng-show="post.commentsQuantity==0"> No comments have been added yet :(</span></li>
         </ul>
       </div>
-           <div class="container">
-               
-  
-           </div>
-           <div class="container">
-  <div class="dialogbox" ng-repeat="comment in post.comments">
-    <div class="body">
-      <span class="tip tip-up"></span>
-      <div class="message" >
-        <span>{{comment.text}}</span>
-      </div>
+           
+           <div class="row">
+      <div class="col-xs-12">
+           <div  ng-show="post.commentsDownloaded">
+
+               <div class="detailBox">
+    
+    <div class="actionBox">
+        <ul class="commentList" ng-repeat="comment in post.comments">
+            <li>
+                <div class="commenterImage">
+                  <img src="views/images/user_icon.png" />
+                </div>
+                <div class="commentText">
+                    <span class="help-block">{{comment.text}}</span><span class="date sub-text">{{comment.created}}</span>
+                    <span style="text-align: right" >By {{comment.author_name}}</span>
+                </div>
+            </li>
+            
+        </ul>
+        <hr>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label >Name:</label> <input class="form-control" type="text" placeholder="Your name" />
+            </div>
+            </br>            
+            <div class="form-group">
+                <label >Comment text:</label> 
+                <textarea class="form-control"  placeholder="Comment text here..." /></textarea>
+            </div>
+                        </br>                        </br>
+
+
+            <div class="form-group">
+                <button class="btn btn-default" ng-click="addComment(post)">Add comment</button>
+            </div>
+        </form>
     </div>
-  </div>
+</div>
            </div>
+           
     </div>
+               </div></div>
     <hr>  
 </div>
      <a class="btn btn-info btn-block btn-primary" ng-hide="allPostDownloaded" ng-click="loadMore()" role="button">Load More </a>

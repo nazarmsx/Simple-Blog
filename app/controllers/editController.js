@@ -1,6 +1,7 @@
 
 app.controller('editController', function ($scope,$http) {
     $scope.hideForm=true;
+    $scope.downloading=true;
     $scope.getCustomerForm = function ()
     {
         var customer = {
@@ -21,6 +22,7 @@ app.controller('editController', function ($scope,$http) {
             .success(function (response) {
                 $scope.posts = response.records;
                 $scope.filteredPosts = response.records.slice(0, 10);
+                $scope.downloading=false;
             });
 
     $scope.currentPage = 0;

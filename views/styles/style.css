@@ -194,65 +194,73 @@ h1{
         left: 0;
     }
 }
-.tip {
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  background: transparent;
-  border: 10px solid #ccc;
+.detailBox {
+   
+    border:1px solid #bbb;
+    margin:10px;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
 }
 
-.tip-up {
-  top: -25px; /* Same as body margin top + bordere */
-  left: 10px;
-  border-right-color: transparent;
-  border-left-color: transparent;
-  border-top-color: transparent;
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText {
+    line-break:normal;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
 }
 
-.tip-down {
-  bottom: -25px;
-  left: 10px;
-  border-right-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: transparent;  
-}
-
-.tip-left {
-  top: 10px;
-  left: -25px;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: transparent;  
-}
-
-.tip-right {
-  top: 10px;
-  right: -25px;
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: transparent;  
-}
-
-.dialogbox .body {
-  position: relative;
-  max-width: 300px;
-  height: auto;
-  margin: 20px 10px;
-  padding: 5px;
-  background-color: #DADADA;
-  border-radius: 3px;
-  border: 5px solid #ccc;
-}
-
-.body .message {
-  min-height: 30px;
-  border-radius: 3px;
-  font-family: Arial;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #797979;
-}
 .spinner {
   margin: 100px auto 0;
   width: 70px;
@@ -414,4 +422,33 @@ h1{
     -webkit-transform: scale(1);
             transform: scale(1);
   }
+}
+
+.animate-enter, 
+.animate-leave
+{ 
+	-webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	text-overflow: clip;
+	white-space:nowrap;
+} 
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+}
+
+.animate-enter.animate-enter-active, 
+.animate-leave {
+	opacity: 1;
+	width: 150px;
+	height: 30px;
 }

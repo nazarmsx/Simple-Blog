@@ -1,9 +1,11 @@
 var app = angular.module('myApp', ['ngRoute']);
 
-app.controller('homeController', function ($scope,$http,$location) {
+app.controller('homController', function ($scope,$http,$location) {
             
             $scope.allPostDownloaded=true; //is using to hide loadMore button
             $scope.postsAreBeingDownloading=true;
+            
+
             $http.get("./app/api/request.php?action=readAll&alreadyDownloadedQuantity=0")
             .success(function (response) {
                 $scope.posts = response.records;
@@ -36,16 +38,24 @@ app.controller('homeController', function ($scope,$http,$location) {
             $http.get("./app/api/request.php?action=loadComments&post_id="+post.id)
             .success(function (response) {
                 post.comments = response.records;
+                post.commentsDownloaded=true;
             });    
             };
+            $scope.hideComments=function(post)
+            {
+                post.commentsDownloaded=false;
+                post.comments =[];
+              
+            };
 });
+
 
 app.config(function ($routeProvider) {
     $routeProvider
             // route for the home page
             .when('/', {
                 templateUrl: './views/home.html',
-                controller: 'homeController'
+                controller: 'homController'
             }).when('/contact', {
                 templateUrl: './views/contact.html',
                 controller: 'contactController'
@@ -61,6 +71,20 @@ app.config(function ($routeProvider) {
             .when('/after_register', {
                 templateUrl: './views/afterregister.html',
                 controller: 'afterRegisterController'
+            }).when('/login', {
+                templateUrl: './views/login.html',
+                controller: 'loginController'
+            })
+            .when('/register', {
+                templateUrl: './views/register.html',
+                controller: 'registerController'
+            })
+            .when('/after_register/:email/', {
+                templateUrl: './views/afterregister.html',
+                controller: 'afterRegisterController'
+            }) .when('/after_login/', {
+                templateUrl: './views/after_login.html',
+                controller: 'afterLoginController'
             })
             .otherwise({redirectTo:'/'});;
 });
