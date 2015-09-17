@@ -1,0 +1,31 @@
+<div class="actionBox">
+        <ul class="commentList" ng-repeat="comment in comments">
+            <li>
+                <div class="commenterImage">
+                  <img src="./views/styles/images/user_icon.png" alt="User"/>
+                </div>
+                <div class="commentText">
+                    <span class="help-block">{{comment.text}}</span><span class="date sub-text">{{comment.created}}</span>
+                    <span style="text-align: right" >By {{comment.author_name}}</span>
+                </div>
+            </li>
+            
+        </ul>
+        <hr>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label >Name:</label> <input ng-model="author_name" class="form-control" type="text" placeholder="Your name" />
+            </div>
+            </br>            
+            <div class="form-group">
+                <label >Comment text:</label> 
+                <textarea class="form-control" ng-model="text" placeholder="Comment text here..." /></textarea>
+            </div>
+                        </br>                        </br>
+
+
+            <div class="form-group">
+                <button class="btn btn-default" ng-click="addComment()">Add comment</button>
+            </div>
+        </form>
+    </div>
